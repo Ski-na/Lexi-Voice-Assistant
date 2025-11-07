@@ -13,9 +13,21 @@ A fully functional 100% offline voice assistant with multi-language support usin
 pip install -r requirements.txt
 ```
 
-## Setup
+## Usage
 
-Run the interactive setup on first start or use the `--init` flag:
+Simply run:
+```bash
+python main.py
+```
+
+### Voice Commands
+- Speak naturally to ask questions or have conversations
+- Say "exit", "quit", or "goodbye" to stop the assistant
+- Say "clear" or "reset" to clear conversation history
+
+## Configuration
+
+Configuration is stored in `assistant_config.json` and can be changed by running:
 
 ```bash
 python main.py --init
@@ -28,30 +40,6 @@ The setup wizard will ask you to:
    - Large (13B, ~7GB) - Slower, more accurate
 
 **All required models are downloaded automatically!** No manual downloads needed.
-
-## Usage
-
-After setup, simply run:
-```bash
-python main.py
-```
-
-To reconfigure:
-```bash
-python main.py --init
-```
-
-### Voice Commands
-- Speak naturally to ask questions or have conversations
-- Say "exit", "quit", or "goodbye" to stop the assistant
-- Say "clear" or "reset" to clear conversation history
-
-## Configuration
-
-Configuration is stored in `assistant_config.json` and can be changed by running:
-```bash
-python main.py --init
-```
 
 ## Features
 

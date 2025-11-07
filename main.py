@@ -12,6 +12,7 @@ import zipfile
 import urllib.request
 import warnings
 import argparse
+from pathlib import Path
 
 # Suppress ALSA/JACK warnings
 os.environ['ALSA_CARD'] = 'default'
@@ -35,8 +36,9 @@ import subprocess
 # Suppress llama-cpp warnings
 warnings.filterwarnings('ignore', category=RuntimeWarning, module='llama_cpp')
 
-# Configuration file
-CONFIG_FILE = "assistant_config.json"
+# Configuration file - stored in data/config directory
+CONFIG_DIR = Path("data/config")
+CONFIG_FILE = CONFIG_DIR / "assistant_config.json"
 
 # Model configurations
 MODEL_CONFIGS = {
@@ -104,13 +106,14 @@ MESSAGES = {
 
 def load_config():
     """Load configuration from file or return default"""
-    if os.path.exists(CONFIG_FILE):
+    if CONFIG_FILE.exists():
         with open(CONFIG_FILE, 'r') as f:
             return json.load(f)
     return DEFAULT_CONFIG.copy()
 
 def save_config(config):
     """Save configuration to file"""
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
     with open(CONFIG_FILE, 'w') as f:
         json.dump(config, f, indent=2)
 
@@ -119,36 +122,39 @@ def get_model_paths(config):
     lang = config["language"]
     llama_size = config["llama_model"]
 
+    # Models directory - inside data directory
+    models_dir = Path("data/models")
+
     # Vosk paths - now in models directory
     vosk_config = MODEL_CONFIGS["vosk"][lang]
     vosk_model_name = vosk_config["name"]
-    vosk_model_path = f"models/{vosk_model_name}"
+    vosk_model_path = models_dir / vosk_model_name
     vosk_model_url = vosk_config["url"]
 
     # Llama paths
     llama_config = MODEL_CONFIGS["llama"][llama_size]
     llama_model_name = llama_config["name"]
-    llama_model_path = f"models/{llama_model_name}"
+    llama_model_path = models_dir / llama_model_name
     llama_model_url = llama_config["url"]
 
     # Piper paths
     piper_config = MODEL_CONFIGS["piper"][lang]
     piper_model_name = piper_config["model"]
     piper_config_name = piper_config["config"]
-    piper_model_path = f"models/{piper_model_name}"
-    piper_config_path = f"models/{piper_config_name}"
+    piper_model_path = models_dir / piper_model_name
+    piper_config_path = models_dir / piper_config_name
     piper_model_url = f"{piper_config['url_base']}/{piper_model_name}"
     piper_config_url = f"{piper_config['url_base']}/{piper_config_name}"
 
     return {
-        "vosk_model_path": vosk_model_path,
+        "vosk_model_path": str(vosk_model_path),
         "vosk_model_url": vosk_model_url,
         "vosk_model_name": vosk_model_name,
-        "llama_model_path": llama_model_path,
+        "llama_model_path": str(llama_model_path),
         "llama_model_url": llama_model_url,
         "llama_model_name": llama_model_name,
-        "piper_model_path": piper_model_path,
-        "piper_config_path": piper_config_path,
+        "piper_model_path": str(piper_model_path),
+        "piper_config_path": str(piper_config_path),
         "piper_model_url": piper_model_url,
         "piper_config_url": piper_config_url,
         "piper_model_name": piper_model_name,
@@ -193,22 +199,24 @@ def download_with_progress(url, destination):
 
 def download_vosk_model(model_path, model_url, model_name):
     """Download and extract Vosk speech recognition model"""
-    if os.path.exists(model_path):
+    model_path_obj = Path(model_path)
+    if model_path_obj.exists():
         print(f"Vosk model already exists at {model_path}")
         return
 
     print("Vosk model not found. Downloading...")
-    os.makedirs("models", exist_ok=True)
-    zip_path = f"models/{model_name}.zip"
+    models_dir = Path("data/models")
+    models_dir.mkdir(parents=True, exist_ok=True)
+    zip_path = models_dir / f"{model_name}.zip"
 
     try:
-        download_with_progress(model_url, zip_path)
+        download_with_progress(model_url, str(zip_path))
 
         print("Extracting model...")
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall('models/')
+            zip_ref.extractall(str(models_dir))
 
-        os.remove(zip_path)
+        zip_path.unlink()
         print(f"Vosk model downloaded and extracted to {model_path}")
     except Exception as e:
         print(f"Error downloading Vosk model: {e}")
@@ -217,12 +225,14 @@ def download_vosk_model(model_path, model_url, model_name):
 
 def download_llama_model(model_path, model_url):
     """Download LLM model"""
-    if os.path.exists(model_path):
+    model_path_obj = Path(model_path)
+    if model_path_obj.exists():
         print(f"LLM model already exists at {model_path}")
         return
 
     print("LLM model not found. Downloading...")
-    os.makedirs("models", exist_ok=True)
+    models_dir = Path("data/models")
+    models_dir.mkdir(parents=True, exist_ok=True)
 
     try:
         download_with_progress(model_url, model_path)
@@ -236,10 +246,14 @@ def download_llama_model(model_path, model_url):
 
 def download_piper_model(model_path, config_path, model_url, config_url):
     """Download Piper TTS model and config"""
-    os.makedirs("models", exist_ok=True)
+    models_dir = Path("data/models")
+    models_dir.mkdir(parents=True, exist_ok=True)
+
+    model_path_obj = Path(model_path)
+    config_path_obj = Path(config_path)
 
     # Download model file
-    if not os.path.exists(model_path):
+    if not model_path_obj.exists():
         print("Piper TTS model not found. Downloading...")
         try:
             download_with_progress(model_url, model_path)
@@ -251,7 +265,7 @@ def download_piper_model(model_path, config_path, model_url, config_url):
         print(f"Piper model already exists at {model_path}")
 
     # Download config file
-    if not os.path.exists(config_path):
+    if not config_path_obj.exists():
         print("Downloading Piper config...")
         try:
             download_with_progress(config_url, config_path)
@@ -382,18 +396,18 @@ class OfflineVoiceAssistant:
 
         try:
             # Use command-line piper for simplicity and reliability
-            temp_audio = "temp_speech.wav"
+            temp_audio = Path("data/temp_speech.wav")
 
             # Always use subprocess for Piper
             subprocess.run(
-                ["piper", "--model", self.piper_model_path, "--output_file", temp_audio],
+                ["piper", "--model", self.piper_model_path, "--output_file", str(temp_audio)],
                 input=text.encode('utf-8'),
                 check=True,
                 capture_output=True
             )
 
             # Play the generated audio
-            wf = wave.open(temp_audio, 'rb')
+            wf = wave.open(str(temp_audio), 'rb')
 
             stream = self.audio.open(
                 format=self.audio.get_format_from_width(wf.getsampwidth()),
@@ -414,8 +428,8 @@ class OfflineVoiceAssistant:
             wf.close()
 
             # Remove temporary file
-            if os.path.exists(temp_audio):
-                os.remove(temp_audio)
+            if temp_audio.exists():
+                temp_audio.unlink()
 
         except (subprocess.CalledProcessError, FileNotFoundError) as e:
             print(f"Error: Piper TTS not available or failed - {e}")

@@ -4,8 +4,6 @@
 
 ### Manual Entries ###
 .vscode/
-models/
-logs/
 data/
 
 ### Python ###
